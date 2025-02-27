@@ -1,0 +1,65 @@
+{
+    "chats": [
+      {
+        "id": 1,
+        "name": "Shrifa Alshammari",
+        "lastMessage": "You:I am doing a task...",
+        "time": "15 minutes",
+        "messages": [
+          { "id": 1, "content": "You:I am doing a task...", "time": "15 minutes ago" }
+        ],
+        "files": [
+          { "name": "task-one.pdf", "size": "2 MB", "date": "19 Feb 2025" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Sara Ali",
+        "lastMessage": "Hi how are you...",
+        "time": "30 minutes",
+        "messages": [
+          { "id": 1, "content": "Hi how are you...", "time": "30 minutes ago" }
+        ],
+        "files": [
+          { "name": "task-design.fig", "size": "2 MB", "date": "15 Feb 2025" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Saleh Omar",
+        "lastMessage": "Sent a photo",
+        "time": "2 hours",
+        "messages": [
+          { "id": 1, "content": "Sent a photo", "time": "2 hours ago" },
+          { "id": 2, "content": "I want more Photos.", "time": "2 hours ago" }
+        ],
+        "files": [
+          { "name": "photos", "size": "2 MB", "date": "10 Feb 2025" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Amal Ibrahim",
+        "lastMessage": "Lorem ispusm text sud...",
+        "time": "5 days",
+        "messages": [
+          { "id": 1, "content": "Lorem ispusm text sud...", "time": "5 days ago" }
+        ],
+        "files": [
+          { "name": "task-project.zip", "size": "2 MB", "date": "3 Feb 2025" }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Maram, Sara & Jana...",
+        "lastMessage": "Lorem ispusm text ...",
+        "time": "5 days",
+        "messages": [
+          { "id": 1, "content": "Lorem ispusm text ...", "time": "5 days ago" }
+        ],
+        "files": [
+          { "name": "index.js", "size": "2 MB", "date": "3 Feb 2025" }
+        ]
+      }
+    ]
+  }
