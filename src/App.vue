@@ -24,12 +24,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped>/*
 .layout {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-}
+  height: 300vh;
+}*/
 
 .side-bar {
   display: flex;

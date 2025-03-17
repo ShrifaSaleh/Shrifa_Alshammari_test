@@ -12,7 +12,7 @@
     </div>
     <div class="chat-input">
       <button><i class="bi bi-emoji-smile"></i></button>
-      <input type="text" placeholder="Type a message" v-model="newMessage" />
+      <input type="text" placeholder="Type a message" v-model="newMessage" @keyup.enter="sendMessage" />
         <button><i class="bi bi-image"></i></button>
         <button><i class="bi bi-paperclip"></i></button>
         <button><i class="bi bi-mic"></i></button>
@@ -56,7 +56,7 @@ export default {
   display: flex;
   flex-direction: column;
   flex: 1;
-  height: 60vh;
+  height: 100%;
   background-color: white;
 }
 
@@ -115,13 +115,16 @@ export default {
   display: flex;
   align-items: center;
   border-top: 1px solid #ccc; 
-  padding: 6px;
+  padding: 5px;
+}
+
+.chat-input input::placeholder{
+  color: #98A4AE;
 }
 
 .chat-input input {
   width: 85%;
   padding: 5px;
-  border-radius: 20px;
   border: none;
   font-size: 12px;
   margin-right: 8px;

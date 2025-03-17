@@ -45,12 +45,13 @@ export default {
   padding: 10px;
   background: #fff;
   max-width: 250px;
-  height: 80vh; 
+  height: 100%; 
 }
 
 .media-grid {
   display: grid;
   row-gap: 5px;
+  gap: 5px;
   grid-template-columns: auto auto auto;
   padding: 5%; 
   margin: 0px 10px;
@@ -65,6 +66,7 @@ export default {
 
 .files {
   margin-top: 10px;
+  margin-left: 28px;
 }
 
 .file {
@@ -95,6 +97,7 @@ h4 {
   font-size: 12px;
   color: #333;
   margin-bottom: 6px; 
+  margin-left: 28px;
 }
 
 .file img{

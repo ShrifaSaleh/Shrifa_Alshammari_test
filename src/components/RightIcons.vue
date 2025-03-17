@@ -48,6 +48,16 @@
             code: "ar",
             flag: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Flag_of_Saudi_Arabia.svg",
           },
+            {
+    name: "Français",
+    code: "fr",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg"
+  },
+  {
+    name: "中文",
+    code: "zh",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg"
+  },
         ],
         selectedIndex: 0,
         user: {
@@ -63,11 +73,12 @@
       },
     },
     methods: {
-      toggleLanguage() {
-        this.selectedIndex = this.selectedIndex === 0 ? 1 : 0;
-        console.log(`Language changed to: ${this.selectedLanguage.name} (${this.selectedLanguage.code})`);
-      },
-    },
+  toggleLanguage() {
+    this.selectedIndex = (this.selectedIndex + 1) % this.languages.length;
+    console.log(`Language changed to: ${this.selectedLanguage.name} (${this.selectedLanguage.code})`);
+  },
+},
+
   };
   </script>
 

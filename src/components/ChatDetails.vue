@@ -1,5 +1,5 @@
 <template>
-  <div class="chat-container rounded-4">
+  <div class="chat-container rounded-start-4">
     <v-card class="chatnav rounded-3">
       <span class="chat-title">Chat</span>
       <div class="chat-nav-right">
@@ -10,11 +10,10 @@
         <button class="chat-btn rounded-3">Chat</button>
       </div>
     </v-card>
-
     <div class="chat-layout">
-      <side-chat class="side-chat" />
+      <side-chat class="side-chat " />
       <div class="main-chat">
-        <chat-header class="chat-header" />
+        <chat-header class="chat-header"  />
         <div class="chat-main-content">
           <div class="chat-content p-0">
             <slot>
@@ -48,14 +47,17 @@ export default {
 </script>
 
 <style scoped>
+
 .chat-container {
-  position: fixed;
+  position: relative;
+  left: 12px;
+  bottom: 80px;
   display: flex;
   flex-direction: column;
   align-items: left;
-  width: 100%;
-  height: 100vh;
-  background-color: #f5f5f5;
+  width: 105%;
+  height: 110vh;
+  background-color: #F4F7FB;
   padding: 50px;
 }
 
@@ -63,19 +65,18 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
-  height:7vh;
+  width: 95%;
+  height:50px;
   position: relative;
-  bottom: 7%;
-  max-width: 1200px;
-  padding: 10px 20px;
+  /*max-width: 1200px;*/
+  padding: 16px 30px;
   background-color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px #AFB6C933;
   margin-bottom: 15px;
 }
 
 .chat-title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: #333;
 }
@@ -91,32 +92,36 @@ export default {
 
 .chat-btn {
   font-size: 14px;
+  font-weight:400;
   color: #635BFF;
+  height: 25px;
   background-color: #DDDBFF;
   border: none;
-  padding: 5px 10px;
+  padding: 0px 10px;
   cursor: pointer;
 }
 
 .chat-layout {
   display: flex;
-  width: 80%;
-  max-width: 1200px;
+  width: 95%;
+  /* max-width: 1200px;*/
   height: 100%;
   position: relative;
-  bottom: 7%;
   background: #ffffff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /*overflow: hidden;*/
+  box-shadow: 0 2px 4px #AFB6C933;
+  border-radius: 12px;
 }
 
 .side-chat {
-  width: 240px;
+  width: 44vh;
   border-right: 1px solid #ddd;
   background: white;
   overflow-y: auto;
-  height: 80vh;
+  height: 100%;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  padding: 0px;
 }
 
 .main-chat {
@@ -127,18 +132,18 @@ export default {
 }
 
 .chat-header {
-  height: 40px;
+  height: 60px;
   border-bottom: 1px solid #ddd;
+  border-top-right-radius: 12px;
   background: white;
   padding: 10px;
-  position: sticky;
-  top: 0;
   z-index: 2;
 }
 
 .chat-main-content {
   display: flex;
   flex-direction: row; 
+  width: 96%;
   height: calc(100vh - 140px);
   gap: 0; 
 }
@@ -150,7 +155,7 @@ export default {
 }
 
 .chat-media {
-  width: 250px; 
+  width: 220px; 
   border-left: 1px solid #ddd;
   background: #f9f9f9;
 }

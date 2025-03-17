@@ -3,7 +3,6 @@
     <div class="profile">
       <div class="avatar-wrapper">
         <img src="@/assets/user2.svg" alt="User Avatar" class="avatar" />
-        <v-badge dot color="green" class="status-badge"></v-badge>
       </div>
       <span class="status">Away</span>
     </div>
@@ -14,7 +13,7 @@
       <i class="bi bi-camera-video video-icon"></i>
       <i class="bi bi-list menu-icon" @click="openDialog('menu')"></i>
     </div>
-    <v-dialog v-model="dialog" max-width="400">
+    <v-dialog v-model="dialog" max-width="492" style="height:323; border-radius:10px;">
       <v-card class="d-flex flex-column align-center">
         <div class="dialogIcon">
           <i :class="dialogIcon"></i>
@@ -53,12 +52,12 @@ export default {
           break;
         case "delete":
           this.dialogTitle = "Delete Conversation";
-          this.dialogMessage = "once you sure to delete this conversation , you will not be able to undo this action";
+          this.dialogMessage = "Once You Sure To Delete This Conversation , You Will Not Be Able To Undo This Action";
           this.dialogIcon = "bi bi-trash trash-icon";
           break;
         case "menu":
           this.dialogTitle = "Unlock User";
-          this.dialogMessage = "you are going to unblock this user , are you sure?";
+          this.dialogMessage = "You Are Going To Unblock This User , Are You Sure?";
           this.dialogIcon = "bi bi-unlock"
           break;
       }
@@ -89,7 +88,6 @@ export default {
   align-items: center;
   padding: 10px;
   background: white;
-  border-bottom: 1px solid #949798;;
 }
 
 .profile {
@@ -99,9 +97,8 @@ export default {
 }
 
 .avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  width: 35px;
+  height: 35px;
 }
 
 .status {
@@ -111,7 +108,7 @@ export default {
 
 .icons {
   display: flex;
-  gap: 15px;
+  gap: 22px;
 }
 
 .icons i {
@@ -141,9 +138,10 @@ export default {
 .title{
   color: black;
   font-size: 25px;
+  font-weight: 400px;
 }
 .text{
-  color: gray;
+  color: #717171;
   font-size: 14px;
   text-align: center;
 }
@@ -152,20 +150,27 @@ export default {
   color: white;
   background-color: #575CD4;
   margin-bottom: 15px;
-  margin-left: 10px;
+  margin-left: 25px;
+  text-transform: capitalize;
+  width: 110px;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 
 .Cancel{
   color: white;
-  background-color:gray;
+  background-color:#959595;
   margin-bottom: 15px;
-  margin-right: 10px;
-  
+  margin-right: 25px;
+  text-transform:capitalize;
+  width: 110px;
+   font-size: 14px;
+  font-weight: 400;
 }
 
 .dialogIcon i {
-  font-size: 50px;
+  font-size: 30px;
   color: #575CD4;
 }
 

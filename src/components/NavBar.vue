@@ -26,7 +26,7 @@ export default{
 
 <style scoped>
 .navbar {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 220px; 
   width: calc(100% - 220px); 
