@@ -7,14 +7,10 @@
           <h4>Mathew Anderson</h4>
           <v-menu offset-y>
             <template v-slot:activator="{ props }">
-              <i class="bi bi-three-dots-vertical" v-bind="props" style="margin-left:45px;"></i>
+              <i class="bi bi-three-dots-vertical" v-bind="props" style="position:relative; left: 28%; cursor: pointer;"></i>
             </template>
             <v-list>
-              <v-list-item
-                v-for="(item, index) in menuItems"
-                :key="index"
-                @click="handleMenuItemClick(item)"
-              >
+              <v-list-item v-for="(item, index) in menuItems" :key="index" @click="handleMenuItemClick(item)">
                 <v-list-item-title>{{ item }}</v-list-item-title>
               </v-list-item>
             </v-list>
@@ -26,17 +22,28 @@
 
     <div class="search-container rounded">
       <i class="bi bi-search"></i>
-      <input type="text" placeholder="Search contacts" class="search-box" />
+      <input type="text" v-model="searchQuery" placeholder="Search contacts" class="search-box" />
     </div>
 
-    <div class="d-flex align-items-center recent-header">
-      <p class="text-sm recent-label mb-5">Recent Chats</p>
-      <i class="bi bi-chevron-down ms-1 mb-2" style="font-size: 5px; color:#98A4AE" ></i>
+    <div class="d-flex align-items-center recent-header mt-5">
+      <p @click="toggleSortMenu" class="text-sm recent-label mb-5" style="cursor: pointer;">Recent Chats</p>
+      <v-menu v-model="showSortMenu" offset-y>
+        <template v-slot:activator="{ props }">
+          <i class="bi bi-chevron-down ms-1 mb-2" v-bind="props" style="cursor: pointer; font-size:8px; color:#98A4AE;"></i>
+        </template>
+        <v-list>
+          <v-list-item @click="sortBy('date')">
+            <v-list-item-title>Sort by Date</v-list-item-title>
+          </v-list-item>
+          <v-list-item @click="sortBy('name')">
+            <v-list-item-title>Sort by Name</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </div>
 
-    <div v-for="contact in contacts" :key="contact.id" class="contact">
+    <div v-for="contact in filteredContacts" :key="contact.id" class="contact">
       <img :src="contact.avatar" alt="Avatar" class="contact-img" />
-      
       <div class="contact-info">
         <div class="contact-header">
           <h4>{{ contact.name }}</h4>
@@ -52,32 +59,42 @@
 export default {
   data() {
     return {
+      searchQuery: "",
       contacts: [
-        { id: 1, name: 'Michell Flintoff', lastMessage: 'Yesterday was great...', avatar: require('@/assets/user2.svg'), time: '15 minutes', status: 'online'},
-        { id: 2, name: 'Bianca Anderson', lastMessage: 'Nice looking dress you...', avatar: require('@/assets/user3.svg'), time: '30 minutes', status: 'busy' },
-        { id: 3, name: 'Andrew Johnson', lastMessage: 'Sent a photo', avatar: require('@/assets/user4.svg'), time: '2 hours', status: 'away' },
-        { id: 4, name: 'Mark Strokes', lastMessage: 'Lorem ipsum text sud...', avatar: require('@/assets/user5.svg'), time: '5 days', status: 'online' },
-        { id: 5, name: 'Mark, Stoinus & Rish...', lastMessage: 'Lorem ipsum text ...', avatar: require('@/assets/user6.svg'), time: '5 days', status: 'online' },
-        { id: 6, name: 'Bianca Anderson', lastMessage: 'Nice looking dress you...', avatar: require('@/assets/user7.svg'), time: '30 minutes', status: 'busy' }
+        { id: 1, name: 'Michell Flintoff', lastMessage: 'Yesterday was great...', avatar: require('@/assets/user2.svg'), time: '15 minutes', timestamp: 1678255100 },
+        { id: 2, name: 'Bianca Anderson', lastMessage: 'Nice looking dress you...', avatar: require('@/assets/user3.svg'), time: '30 minutes', timestamp: 1678254800 },
+        { id: 3, name: 'Andrew Johnson', lastMessage: 'Sent a photo', avatar: require('@/assets/user4.svg'), time: '2 hours', timestamp: 1678254400 },
+        { id: 4, name: 'Mark Strokes', lastMessage: 'Lorem ipsum text sud...', avatar: require('@/assets/user5.svg'), time: '5 days', timestamp: 1678240000 },
+        { id: 5, name: 'Mark, Stoinus & Rish...', lastMessage: 'Lorem ipsum text ...', avatar: require('@/assets/user6.svg'), time: '5 days', timestamp: 1678240000 },
+        { id: 6, name: 'Bianca Anderson', lastMessage: 'Nice looking dress you...', avatar: require('@/assets/user7.svg'), time: '30 minutes', timestamp: 1678254800 }
       ],
-      menuItems: ['Show Profile', 'Setting']
+      menuItems: ['Show Profile', 'Setting'],
+      showSortMenu: false
     };
   },
+  computed: {
+    filteredContacts() {
+      return this.contacts.filter(contact => 
+        contact.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    }
+  },
   methods: {
-    getStatusColor(status) {
-      switch (status) {
-        case 'online': return 'success'; 
-        case 'away': return 'yellow';  
-        case 'busy': return 'pink';      
-        default: return 'grey';        
+    sortBy(type) {
+      if (type === 'date') {
+        this.contacts.sort((a, b) => b.timestamp - a.timestamp);
+      } else if (type === 'name') {
+        this.contacts.sort((a, b) => a.name.localeCompare(b.name));
       }
     },
     handleMenuItemClick(item) {
-      // Handle the action when a menu item is clicked
       alert(`You clicked on ${item}`);
+    },
+    toggleSortMenu() {
+      this.showSortMenu = !this.showSortMenu;
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -120,7 +137,6 @@ export default {
   font-size: 13px;
   margin-bottom: 0px;
 }
-
 .search-container {
   height: 25px;
   position: relative;
@@ -131,6 +147,16 @@ export default {
   border: 1px solid #E0E6EB;
   background: white;
   margin: 20px;
+}
+
+.search-box {
+  width: 90%;
+  height: 60px;
+  padding: 10px 10px 10px 35px;
+  border: none;
+  outline: none;
+  font-size: 12px;
+  background: transparent;
 }
 
 .search-container i {
@@ -168,15 +194,17 @@ export default {
   padding-left: 20px;
 }
 
-.contact:hover{
+.contact:hover {
   background-color: #F6F7F9;
+  height: auto;
 }
 
 .contact-img {
   width: 30px; 
   height: 30px;
   margin-right: 8px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  margin-top: 5px;
   position: relative;
 }
 
@@ -192,6 +220,7 @@ export default {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  margin-top: 10px;
 }
 
 .contact-header {
@@ -203,7 +232,7 @@ export default {
 
 .contact-header h4 {
   font-size: 11px;
-  margin: 0;
+  margin: 0px;
 }
 
 .msg-time {

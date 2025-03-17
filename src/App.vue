@@ -1,5 +1,4 @@
 <template>
-  <div class="layout">
     <nav-bar />
     <div class="side-bar">
       <side-bar />
@@ -7,7 +6,6 @@
         <chat-details />
       </main>
     </div>
-  </div>
 </template>
 
 <script>
@@ -24,13 +22,7 @@ export default {
 };
 </script>
 
-<style scoped>/*
-.layout {
-  display: flex;
-  flex-direction: column;
-  height: 300vh;
-}*/
-
+<style scoped>
 .side-bar {
   display: flex;
   flex: 1;

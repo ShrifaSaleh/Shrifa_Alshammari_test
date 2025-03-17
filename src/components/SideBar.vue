@@ -72,7 +72,7 @@ export default {
   left: 0;
   top: 0;
   width: 240px; 
-  height: 1219px;
+  height: auto;
   background-color: #FFFFFF;
   margin-left: 10px;
 }

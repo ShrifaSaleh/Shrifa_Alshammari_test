@@ -4,7 +4,7 @@
       <div v-for="(message, index) in messages" :key="index" class="chat-message" :class="{ 'user-message': message.isUser }">
         <img v-if="!message.isUser" :src="message.avatar" class="avatar" alt="User Avatar" />
         <div class="message-content">
-          <span class="username">{{ message.username }}, {{ message.time }}</span>
+          <span class="username">{{ message.username }} {{ message.time }}</span>
           <div v-if="message.text" class="message-text rounded-2" :class="{ 'user-text': message.isUser }">{{ message.text }}</div>
           <img v-if="message.image" :src="message.image" class="message-image" alt="Chat Image" />
         </div>
@@ -25,12 +25,12 @@ export default {
   data() {
     return {
       messages: [
-        { username: "Andrew", time: "2 hours ago", text: "If I don't like something, I'll stay away from it.", avatar: require('@/assets/user4.svg'), isUser: false },
-        { username: "You", time: "2 hours ago", text: "If I don't like something, I'll stay away from it.", isUser: true },
-        { username: "Andrew", time: "2 hours ago", text: "I want more detailed information.", avatar: require('@/assets/user4.svg'), isUser: false },
-        { username: "You", time: "2 hours ago", text: "If I don't like something, I'll stay away from it.", isUser: true },
-        { username: "You", time: "2 hours ago", text: "They got there early, and they got really good seats.", isUser: true },
-        { username: "Andrew", time: "2 hours ago", image: require('@/assets/img1.svg'), avatar: require('@/assets/user4.svg'), isUser: false },
+        { username: "Andrew,", time: "2 hours ago", text: "If I don't like something, I'll stay away from it.", avatar: require('@/assets/user4.svg'), isUser: false },
+        {time: "2 hours ago", text: "If I don't like something, I'll stay away from it.", isUser: true },
+        { username: "Andrew,", time: "2 hours ago", text: "I want more detailed information.", avatar: require('@/assets/user4.svg'), isUser: false },
+        {time: "2 hours ago", text: "If I don't like something, I'll stay away from it.", isUser: true },
+        { time: "2 hours ago", text: "They got there early, and they got really good seats.", isUser: true },
+        { username: "Andrew,", time: "2 hours ago", image: require('@/assets/img1.svg'), avatar: require('@/assets/user4.svg'), isUser: false },
       ],
       newMessage: '',
     };

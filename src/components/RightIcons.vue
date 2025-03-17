@@ -1,10 +1,35 @@
 <template>
   <v-container class="d-flex align-center me-5" style="height: 5vh; padding: 0; gap: 10px;">
-    <v-btn icon @click="toggleLanguage" style="min-width: 30px; width: 30px; height: 30px; padding: 0;">
-      <v-avatar size="30">
-        <img :src="selectedLanguage?.flag" :alt="selectedLanguage?.name" class="flag-img" />
-      </v-avatar>
-    </v-btn>
+    <!-- Language Dropdown -->
+    <v-menu min-width="50px">
+      <template v-slot:activator="{ props }">
+        <v-btn icon v-bind="props" style="min-width: 30px; width: 30px; height: 30px; padding: 0;">
+          <v-avatar size="30">
+            <img :src="selectedLanguage?.flag" :alt="selectedLanguage?.name" class="flag-img" />
+          </v-avatar>
+        </v-btn>
+      </template>
+      <v-card min-width="120px">
+        <v-card-text>
+          <div class="mx-auto text-center">
+            <v-list>
+              <v-list-item
+                v-for="(language, index) in languages"
+                :key="language.code"
+                @click="selectLanguage(index)"
+              >
+                <v-avatar size="30">
+                  <img :src="language.flag" :alt="language.name" class="flag-img" />
+                </v-avatar>
+                <span style="margin-left: 10px; font-size: 12px;">{{ language.name }}</span>
+              </v-list-item>
+            </v-list>
+          </div>
+        </v-card-text>
+      </v-card>
+    </v-menu>
+
+    <!-- User Dropdown (unchanged) -->
     <v-menu min-width="50px">
       <template v-slot:activator="{ props }">
         <v-btn icon v-bind="props" style="min-width: 30px; width: 30px; height: 30px;">
@@ -34,53 +59,52 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        languages: [
-          {
-            name: "English",
-            code: "en",
-            flag: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
-          },
-          {
-            name: "العربية",
-            code: "ar",
-            flag: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Flag_of_Saudi_Arabia.svg",
-          },
-            {
-    name: "Français",
-    code: "fr",
-    flag: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg"
-  },
-  {
-    name: "中文",
-    code: "zh",
-    flag: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg"
-  },
-        ],
-        selectedIndex: 0,
-        user: {
-          initials: 'MA',
-          fullName: 'Mathew',
-          email: 'Mathew@gmail.com',
+export default {
+  data() {
+    return {
+      languages: [
+        {
+          name: "English",
+          code: "en",
+          flag: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
         },
-      };
-    },
-    computed: {
-      selectedLanguage() {
-        return this.languages[this.selectedIndex];
+        {
+          name: "العربية",
+          code: "ar",
+          flag: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Flag_of_Saudi_Arabia.svg",
+        },
+        {
+          name: "Français",
+          code: "fr",
+          flag: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg",
+        },
+        {
+          name: "中文",
+          code: "zh",
+          flag: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg",
+        },
+      ],
+      selectedIndex: 0,
+      user: {
+        initials: "MA",
+        fullName: "Mathew",
+        email: "Mathew@gmail.com",
       },
-    },
-    methods: {
-  toggleLanguage() {
-    this.selectedIndex = (this.selectedIndex + 1) % this.languages.length;
-    console.log(`Language changed to: ${this.selectedLanguage.name} (${this.selectedLanguage.code})`);
+    };
   },
-},
-
-  };
-  </script>
+  computed: {
+    selectedLanguage() {
+      return this.languages[this.selectedIndex];
+    },
+  },
+  methods: {
+    selectLanguage(index) {
+      this.selectedIndex = index;
+      console.log(`Language changed to: ${this.selectedLanguage.name} (${this.selectedLanguage.code})`);
+    },
+  },
+};
+</script>
 
 <style scoped>
 .flag-img {
