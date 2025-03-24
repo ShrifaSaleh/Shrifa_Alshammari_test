@@ -42,7 +42,9 @@
       </v-menu>
     </div>
 
-    <div v-for="contact in filteredContacts" :key="contact.id" class="contact">
+ <div v-for="contact in filteredContacts" :key="contact.id" class="contact" :class="{ 'active-contact': contact.name === 'Michell Flintoff' }">
+     
+  
       <img :src="contact.avatar" alt="Avatar" class="contact-img" />
       <div class="contact-info">
         <div class="contact-header">
@@ -198,6 +200,11 @@ export default {
   background-color: #F6F7F9;
   height: auto;
 }
+
+.active-contact {
+  background-color: #F6F7F9;
+}
+
 
 .contact-img {
   width: 30px; 
